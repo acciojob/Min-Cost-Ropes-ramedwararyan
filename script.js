@@ -1,24 +1,24 @@
-function mincost(arr) {
-  if (arr.length <= 1) return 0; // No cost if 0 or 1 rope
-
-  // Create a min-heap by sorting the array
-  arr.sort((a, b) => a - b);
+function mincost(arr) { 
+  if (arr.length <= 1) return 0;
 
   let cost = 0;
 
   while (arr.length > 1) {
-    // Take the two smallest ropes
+    // sort ascending
+    arr.sort((a, b) => a - b);
+
+    // take two smallest
     let first = arr.shift();
     let second = arr.shift();
 
-    let newRope = first + second;
-    cost += newRope;
+    let sum = first + second;
+    cost += sum;
 
-    // Insert the new rope back into sorted order
-    arr.push(newRope);
-    arr.sort((a, b) => a - b); // Keep it sorted for the next smallest pick
+    // push back the new rope
+    arr.push(sum);
   }
 
   return cost;
 }
 
+module.exports = mincost;
